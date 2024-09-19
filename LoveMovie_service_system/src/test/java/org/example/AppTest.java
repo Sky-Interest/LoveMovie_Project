@@ -1,5 +1,6 @@
 package org.example;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.example.model.system.SysRole;
 import org.example.system.mapper.SysRoleMapper;
 import org.junit.Test;
@@ -71,5 +72,12 @@ public class AppTest
     public void testDeleteBatchIds() {
         int result = sysRoleMapper.deleteBatchIds(Arrays.asList(1, 2));
         System.out.println(result);
+    }
+    @Test
+    public void testQueryWrapper() {
+        QueryWrapper<SysRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role_code", "dafei");
+        List<SysRole> roles = sysRoleMapper.selectList(queryWrapper);
+        System.out.println(roles);
     }
 }
