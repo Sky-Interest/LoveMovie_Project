@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = "角色管理控制器")
 @RestController
 @RequestMapping("/admin/system/sysRole")
 public class SysRoleController {
@@ -18,9 +19,7 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
-    // http://localhost:8085/admin/system/sysRole/findAll
-
-    // http://localhost:8085/admin/system/sysRole/findAll
+// http://localhost:8085/admin/system/sysRole/findAll
 
     // 查询全部记录
     @ApiOperation("查询全部接口")
