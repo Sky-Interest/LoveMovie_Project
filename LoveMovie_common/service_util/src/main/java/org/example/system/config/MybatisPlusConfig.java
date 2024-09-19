@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // 这里主要是配置分页插件
 @EnableTransactionManagement
 @Configuration
-@MapperScan("org.example.system.mapper")
+//@MapperScan("org.example.system.mapper")
 public class MybatisPlusConfig {
 
     /**

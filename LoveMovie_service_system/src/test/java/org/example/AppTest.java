@@ -4,13 +4,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.example.model.system.SysRole;
 import org.example.system.mapper.SysRoleMapper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
+
 @SpringBootTest(classes = ServiceApplication.class)
+@RunWith(SpringRunner.class)
 public class AppTest
 {
 
@@ -67,6 +72,11 @@ public class AppTest
         int result = sysRoleMapper.deleteById(2L);
         System.out.println(result);
     }
+    @Test
+    public void testAutowired() {
+        assertNotNull(sysRoleMapper);  // 检查 sysRoleMapper 是否为 null
+    }
+
 
     @Test
     public void testDeleteBatchIds() {

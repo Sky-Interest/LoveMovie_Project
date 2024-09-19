@@ -41,3 +41,7 @@ al:
     regionId: cn-shanghai
     accessKeyId:  #登录账号
     accessKeySecret:
+#logging:
+#  level:
+#    org.springframework: DEBUG
+#    org.mybatis: DEBUG
