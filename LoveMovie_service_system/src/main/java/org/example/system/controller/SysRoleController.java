@@ -76,4 +76,19 @@ public class SysRoleController {
         page1 =   this.sysRoleService.selectPage(page1,roleQueryVo);
         return Result.ok(page1);
     }
+    // 添加
+    @ApiOperation("添加角色")
+    @PostMapping("addRole")
+    public Result addRole(@RequestBody SysRole sysRole)
+    {
+        boolean isSuccess = this.sysRoleService.save(sysRole);
+        if (isSuccess)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
+    }
 }
