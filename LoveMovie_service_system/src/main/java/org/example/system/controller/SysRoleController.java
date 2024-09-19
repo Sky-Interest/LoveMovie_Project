@@ -42,8 +42,7 @@ public class SysRoleController {
 //    }
     @ApiOperation("查询全部接口")
     @GetMapping("/findAll")
-    public Result findAll()
-    {
+    public Result findAll() {
 
         List<SysRole> list = this.sysRoleService.list();
         return Result.ok(list);
@@ -52,15 +51,11 @@ public class SysRoleController {
     // 根据id 去逻辑删除
     @ApiOperation("逻辑删除接口")
     @DeleteMapping("/remove/{id}")
-    public Result removeRole(@PathVariable Long id)
-    {
+    public Result removeRole(@PathVariable Long id) {
         boolean isSuccess = this.sysRoleService.removeById(id);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }
@@ -70,47 +65,52 @@ public class SysRoleController {
     @GetMapping("/{page}/{limit}")
     public Result findRoleByPageQuery(@PathVariable Long page,
                                       @PathVariable Long limit,
-                                      SysRoleQueryVo roleQueryVo)
-    {
-        IPage<SysRole> page1 = new Page<>(page,limit);
-        page1 =   this.sysRoleService.selectPage(page1,roleQueryVo);
+                                      SysRoleQueryVo roleQueryVo) {
+        IPage<SysRole> page1 = new Page<>(page, limit);
+        page1 = this.sysRoleService.selectPage(page1, roleQueryVo);
         return Result.ok(page1);
     }
+
     // 添加
     @ApiOperation("添加角色")
     @PostMapping("addRole")
-    public Result addRole(@RequestBody SysRole sysRole)
-    {
+    public Result addRole(@RequestBody SysRole sysRole) {
         boolean isSuccess = this.sysRoleService.save(sysRole);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
-        }
-        else
-        {
+        } else {
             return Result.fail();
         }
     }
+
     // 根据id 去获取一个role
     @GetMapping("findRoleById/{id}")
     @ApiOperation("根据id查询")
-    public Result findRoleById(@PathVariable Long id)
-    {
+    public Result findRoleById(@PathVariable Long id) {
         SysRole sysRole = this.sysRoleService.getById(id);
         return Result.ok(sysRole);
     }
+
     // 修改
     @ApiOperation("修改角色")
     @PostMapping("updateRole")
-    public Result updateRole(@RequestBody SysRole sysRole)
-    {
+    public Result updateRole(@RequestBody SysRole sysRole) {
         boolean isSuccess = this.sysRoleService.updateById(sysRole);
-        if (isSuccess)
-        {
+        if (isSuccess) {
             return Result.ok();
+        } else {
+            return Result.fail();
         }
-        else
-        {
+    }
+
+    // 批量删除
+    @ApiOperation("批量删除")
+    @DeleteMapping("batchRemove")
+    public Result batchRemove(@RequestBody List<Long> ids) {
+        boolean isSuccess = this.sysRoleService.removeByIds(ids);
+        if (isSuccess) {
+            return Result.ok();
+        } else {
             return Result.fail();
         }
     }

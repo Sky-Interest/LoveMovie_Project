@@ -8,4 +8,6 @@ import org.example.model.vo.SysRoleQueryVo;
 public interface SysRoleService extends IService<SysRole> {
     IPage<SysRole> selectPage(IPage<SysRole> page1, SysRoleQueryVo roleQueryVo);
 
+
 }
+

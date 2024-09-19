@@ -11,4 +11,5 @@ import org.example.model.vo.SysRoleQueryVo;
 public interface SysRoleMapper extends BaseMapper<SysRole> {
     public IPage<SysRole> selectPage(IPage<SysRole> page1, @Param("vo") SysRoleQueryVo roleQueryVo);
 
+
 }
