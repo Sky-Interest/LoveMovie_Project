@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.example.model.system.SysRole;
+import org.example.model.vo.SysRoleQueryVo;
 import org.example.system.service.SysRoleService;
 import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,17 @@ public class SysRoleController {
         {
             return Result.fail();
         }
+    }
+
+    // 分页 + 查询
+    @ApiOperation("角色分页查询")
+    @GetMapping("/{page}/{limit}")
+    public Result findRoleByPageQuery(@PathVariable Long page,
+                                      @PathVariable Long limit,
+                                      SysRoleQueryVo roleQueryVo)
+    {
+        IPage<SysRole> page1 = new Page<>(page,limit);
+        page1 =   this.sysRoleService.selectPage(page1,roleQueryVo);
+        return Result.ok(page1);
     }
 }
