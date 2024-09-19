@@ -91,4 +91,27 @@ public class SysRoleController {
             return Result.fail();
         }
     }
+    // 根据id 去获取一个role
+    @GetMapping("findRoleById/{id}")
+    @ApiOperation("根据id查询")
+    public Result findRoleById(@PathVariable Long id)
+    {
+        SysRole sysRole = this.sysRoleService.getById(id);
+        return Result.ok(sysRole);
+    }
+    // 修改
+    @ApiOperation("修改角色")
+    @PostMapping("updateRole")
+    public Result updateRole(@RequestBody SysRole sysRole)
+    {
+        boolean isSuccess = this.sysRoleService.updateById(sysRole);
+        if (isSuccess)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
+    }
 }
