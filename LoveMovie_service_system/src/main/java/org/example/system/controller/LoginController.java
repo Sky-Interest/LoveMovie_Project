@@ -42,6 +42,14 @@ public class LoginController {
         return Result.ok(map);
 
     }
+    /**
+     *  退出登录
+     */
+    @GetMapping(value = "/logout")
+    public Result logout()
+    {
+        return Result.ok();
+    }
 
 
 }
