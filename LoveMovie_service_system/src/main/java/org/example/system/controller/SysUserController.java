@@ -10,11 +10,7 @@ import org.example.system.entity.SysUser;
 import org.example.system.service.SysUserService;
 import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -42,6 +38,19 @@ public class SysUserController {
         iPage = this.sysUserService.selectPage(iPage, sysUserQueryVo);
 
         return Result.ok(iPage);
+    }
+    // 添加用户
+    @PostMapping("/addUser")
+    public Result addUser(@RequestBody SysUser sysUser) {
+        boolean b = this.sysUserService.save(sysUser);
+        if (b)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
     }
 }
 
