@@ -2,6 +2,7 @@ package org.example.system.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.example.model.system.SysMenu;
+import org.example.model.vo.AssginMenuVo;
 import org.example.system.service.SysMenuService;
 import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,19 @@ public class SysMenuController {
     @DeleteMapping("/removeMenu/{id}")
     public Result removeMenu(@PathVariable Long id) {
         sysMenuService.removeMenuById(id);
+        return Result.ok();
+    }
+    // 根据角色分配菜单
+    @ApiOperation("根据角色获取菜单")
+    @GetMapping("/toAssign/{roleId}")
+    public Result toAssign(@PathVariable Long roleId){
+        List<SysMenu> list =   this.sysMenuService.findSysMenuByRoleId(roleId);
+        return Result.ok(list);
+    }
+    @ApiOperation(value = "给角色分配权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginMenuVo assginMenuVo) {
+        sysMenuService.doAssign(assginMenuVo);
         return Result.ok();
     }
 }
