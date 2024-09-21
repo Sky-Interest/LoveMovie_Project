@@ -60,5 +60,20 @@ public class SysUserController {
         SysUser sysUser = this.sysUserService.getById(id);
         return Result.ok(sysUser);
     }
+    //修改用户
+    @ApiOperation("修改用户")
+    @PostMapping("/updateUser")
+    public Result updateUser(@RequestBody SysUser sysUser)
+    {
+        boolean b = this.sysUserService.updateById(sysUser);
+        if (b)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
+    }
 }
 
