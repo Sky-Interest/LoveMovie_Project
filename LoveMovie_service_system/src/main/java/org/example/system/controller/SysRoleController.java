@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.example.model.system.SysRole;
+import org.example.model.vo.AssginRoleVo;
 import org.example.model.vo.SysRoleQueryVo;
 import org.example.system.service.SysRoleService;
 import org.example.system.util.Result;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(tags = "角色管理控制器")
 @RestController
@@ -21,25 +23,6 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
-// http://localhost:8085/admin/system/sysRole/findAll
-
-    // 查询全部记录
-//    @ApiOperation("查询全部接口")
-//    @GetMapping("/findAll")
-//    public List<SysRole> findAll()
-//    {
-//        List<SysRole> list = this.sysRoleService.list();
-//        return list;
-//    }
-//
-//    // 根据id 去逻辑删除
-//    @ApiOperation("逻辑删除接口")
-//    @DeleteMapping("/remove/{id}")
-//    public boolean removeRole(@PathVariable Long id)
-//    {
-//        boolean isSuccess = this.sysRoleService.removeById(id);
-//        return isSuccess;
-//    }
     @ApiOperation("查询全部接口")
     @GetMapping("/findAll")
     public Result findAll() {
@@ -114,5 +97,18 @@ public class SysRoleController {
         } else {
             return Result.fail();
         }
+    }
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.getRolesByUserId(userId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysRoleService.doAssign(assginRoleVo);
+        return Result.ok();
     }
 }
