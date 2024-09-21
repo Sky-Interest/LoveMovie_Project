@@ -52,5 +52,13 @@ public class SysUserController {
             return Result.fail();
         }
     }
+    // 根据id 去获取一个用户
+    @ApiOperation("根据id 去获取一个用户")
+    @GetMapping("/findUserById/{id}")
+    public Result findUserById(@PathVariable Long id)
+    {
+        SysUser sysUser = this.sysUserService.getById(id);
+        return Result.ok(sysUser);
+    }
 }
 
