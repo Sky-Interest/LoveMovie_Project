@@ -48,7 +48,7 @@ public class SysMenuController {
     @ApiOperation(value = "删除菜单")
     @DeleteMapping("/removeMenu/{id}")
     public Result removeMenu(@PathVariable Long id) {
-        sysMenuService.removeById(id);
+        sysMenuService.removeMenuById(id);
         return Result.ok();
     }
 }

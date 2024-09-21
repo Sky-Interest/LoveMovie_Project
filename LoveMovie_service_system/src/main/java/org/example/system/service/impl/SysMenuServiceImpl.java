@@ -1,7 +1,9 @@
 package org.example.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.example.model.system.SysMenu;
+import org.example.system.exception.MyCustomerException;
 import org.example.system.mapper.SysMenuMapper;
 import org.example.system.service.SysMenuService;
 import org.example.system.utils.MenuHelper;
@@ -23,5 +25,19 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper,SysMenu> imple
         List<SysMenu> bulidTree = MenuHelper.bulidTree(menuList);
 
         return bulidTree;
+    }
+
+    @Override
+    public void removeMenuById(Long id) {
+        // 查询当前删除菜单下面是否有子菜单 根据id = parentid
+        QueryWrapper<SysMenu> wrapper = new QueryWrapper<>();
+        wrapper.eq("parent_id",id);
+        Integer c = baseMapper.selectCount(wrapper);
+        Long count = Long.valueOf(c.toString());
+        if(count > 0) {
+            throw new MyCustomerException(201,"菜单下面还有子菜单,请先删除子菜单！");
+        }
+        // 删除菜单
+        baseMapper.deleteById(id);
     }
 }
