@@ -75,5 +75,20 @@ public class SysUserController {
             return Result.fail();
         }
     }
+    // 根据id删除用户
+    @ApiOperation("根据id删除用户")
+    @DeleteMapping("/removeUserById/{id}")
+    public Result removeUserById(@PathVariable Long id)
+    {
+        boolean b = this.sysUserService.removeById(id);
+        if (b)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
+    }
 }
 
