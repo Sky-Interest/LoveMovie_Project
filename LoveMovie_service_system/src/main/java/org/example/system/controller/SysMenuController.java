@@ -5,9 +5,7 @@ import org.example.model.system.SysMenu;
 import org.example.system.service.SysMenuService;
 import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,12 @@ public class SysMenuController {
         List<SysMenu> menuList=  this.sysMenuService.findNodes();
         return Result.ok(menuList);
     }
+    // 添加菜单
+    @ApiOperation("添加菜单")
+    @PostMapping("/addMenu")
+    public Result addMenu(@RequestBody SysMenu sysMenu){
+        this.sysMenuService.save(sysMenu);
+        return Result.ok();
+    }
 }
+
