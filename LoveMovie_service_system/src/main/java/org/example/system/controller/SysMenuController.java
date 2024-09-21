@@ -30,5 +30,13 @@ public class SysMenuController {
         this.sysMenuService.save(sysMenu);
         return Result.ok();
     }
+    // 修改菜单
+    @ApiOperation("根据id去查询菜单")
+    // 根据id去查询菜单
+    @GetMapping("/findNodeById/{id}")
+    public Result findNodeById(@PathVariable Long id){
+        SysMenu sysMenu = this.sysMenuService.getById(id);
+        return Result.ok(sysMenu);
+    }
 }
 
