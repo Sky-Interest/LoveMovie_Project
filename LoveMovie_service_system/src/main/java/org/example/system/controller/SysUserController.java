@@ -12,6 +12,8 @@ import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 前端控制器
@@ -81,6 +83,21 @@ public class SysUserController {
     public Result removeUserById(@PathVariable Long id)
     {
         boolean b = this.sysUserService.removeById(id);
+        if (b)
+        {
+            return Result.ok();
+        }
+        else
+        {
+            return Result.fail();
+        }
+    }
+    // 批量删除用户
+    @ApiOperation("批量删除用户")
+    @DeleteMapping("/removeBatchUserByIds")
+    public Result removeBatchUserById(@RequestBody List<Long> ids)
+    {
+        boolean b = this.sysUserService.removeByIds(ids);
         if (b)
         {
             return Result.ok();
