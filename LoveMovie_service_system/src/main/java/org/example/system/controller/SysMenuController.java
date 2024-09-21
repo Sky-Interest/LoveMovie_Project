@@ -31,12 +31,25 @@ public class SysMenuController {
         return Result.ok();
     }
     // 修改菜单
-    @ApiOperation("根据id去查询菜单")
+    @ApiOperation(value = "修改菜单")
+    @PostMapping("/updateMenu")
+    public Result updateById(@RequestBody SysMenu sysMenu) {
+        sysMenuService.updateById(sysMenu);
+        return Result.ok();
+    }
     // 根据id去查询菜单
+    @ApiOperation("根据id去查询菜单")
     @GetMapping("/findNodeById/{id}")
     public Result findNodeById(@PathVariable Long id){
         SysMenu sysMenu = this.sysMenuService.getById(id);
         return Result.ok(sysMenu);
+    }
+    // 删除菜单
+    @ApiOperation(value = "删除菜单")
+    @DeleteMapping("/removeMenu/{id}")
+    public Result removeMenu(@PathVariable Long id) {
+        sysMenuService.removeById(id);
+        return Result.ok();
     }
 }
 
