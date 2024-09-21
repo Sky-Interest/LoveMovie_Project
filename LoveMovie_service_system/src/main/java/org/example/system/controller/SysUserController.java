@@ -107,5 +107,14 @@ public class SysUserController {
             return Result.fail();
         }
     }
+
+    // 更改用户状态
+    @ApiOperation("更改用户状态")
+    @GetMapping("/updateStatus/{id}/{status}")
+    public Result updateStatus(@PathVariable Long id,
+                               @PathVariable Integer status) {
+        this.sysUserService.updateStatus(id, status);
+        return Result.ok();
+    }
 }
 
