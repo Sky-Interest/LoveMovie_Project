@@ -71,7 +71,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 
         map.put("buttons", permsList);
-        map.put("routers", routerVoList);
+        map.put("menus", routerVoList);
         return map;
     }
 }

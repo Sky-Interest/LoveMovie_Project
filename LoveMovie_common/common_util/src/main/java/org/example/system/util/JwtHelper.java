@@ -5,10 +5,11 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
+
 public class JwtHelper {
     //token过期时间
-    private static long tokenExpiration = 30 * 60 * 1000;
-//    private static long tokenExpiration = 365 * 24 * 60 * 60 * 1000;
+//    private static long tokenExpiration = 30 * 60 * 1000;
+    private static long tokenExpiration = 365 * 24 * 60 * 60 * 1000;
     //加密秘钥
     private static String tokenSignKey = "123456";
 

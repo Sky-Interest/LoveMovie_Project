@@ -40,6 +40,9 @@ public class LoginController {
         //3.比较密码  （使用用户输入的密码和数据库密码比较）
         String password = loginVo.getPassword();
         String passwordwithMD5 = MD5Helper.encrypt(password);
+        System.out.println("sysUser = " + sysUser);
+        System.out.println("passwordwithMD5 = " + passwordwithMD5);
+        System.out.println("password = " + password);
 
         if (!sysUser.getPassword().equals(passwordwithMD5)){
             throw new MyCustomerException(20001,"密码不正确");
