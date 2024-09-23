@@ -12,6 +12,7 @@ import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,19 +57,20 @@ public class LoginController {
 
         return Result.ok(map);
     }
-    /**
-     *  获取用户信息
-     */
-    @GetMapping(value = "/info")
-    public Result info()
+    // 获取用户信息
+    @ApiOperation("info方法")
+    @GetMapping("/info")
+    public Result info(HttpServletRequest request)
     {
-        Map<String,Object> map = new HashMap<>();
-        map.put("roles","[admin]");
-        map.put("introduction","I am a super admin");
-        map.put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
-        map.put("name","admin dafei hello!");
-        return Result.ok(map);
+        //a.获取请求头的 token 字符串
+        String token = request.getHeader("token");
 
+        //b.从token 字符串获取用户名称 (id)
+        String username = JwtHelper.getUsername(token);
+
+        // c.根据用户名称获取用户信息 （a.基本信息  b.菜单权限信息  和 c.按钮权限信息）
+        Map<String,Object> map =  sysUserService.getUserInfo(username);
+        return Result.ok(map);
     }
     /**
      *  退出登录
