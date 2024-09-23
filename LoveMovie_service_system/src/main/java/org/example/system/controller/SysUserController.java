@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.example.model.vo.SysUserQueryVo;
 import org.example.system.entity.SysUser;
 import org.example.system.service.SysUserService;
+import org.example.system.util.MD5Helper;
 import org.example.system.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,10 @@ public class SysUserController {
     // 添加用户
     @PostMapping("/addUser")
     public Result addUser(@RequestBody SysUser sysUser) {
+        // 通过MD5 工具类
+        String passwordWithMD5 = MD5Helper.encrypt(sysUser.getPassword());
+        // 将加密密码设置给sysUser
+        sysUser.setPassword(passwordWithMD5);
         boolean b = this.sysUserService.save(sysUser);
         if (b)
         {
