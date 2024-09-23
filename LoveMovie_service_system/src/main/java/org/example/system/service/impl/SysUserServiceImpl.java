@@ -1,5 +1,6 @@
 package org.example.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.example.model.vo.SysUserQueryVo;
 import org.example.system.entity.SysUser;
@@ -32,5 +33,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setStatus(status);
         // 3.更新
         this.baseMapper.updateById(sysUser);
+    }
+
+    @Override
+    public SysUser getUserInfoUserName(String username) {
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<SysUser>();
+        queryWrapper.eq("username",username);
+
+        SysUser sysUser = this.baseMapper.selectOne(queryWrapper);
+
+        return sysUser;
     }
 }

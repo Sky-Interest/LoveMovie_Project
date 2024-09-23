@@ -16,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface SysUserService extends IService<SysUser> {
     IPage<SysUser> selectPage(IPage<SysUser> iPage, SysUserQueryVo sysUserQueryVo);
     void updateStatus(Long id, Integer status);
+    SysUser getUserInfoUserName(String username);
 }
