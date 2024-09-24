@@ -2,7 +2,7 @@ package org.example.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.example.model.vo.SysUserQueryVo;
-import org.example.system.entity.SysUser;
+import org.example.model.system.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;

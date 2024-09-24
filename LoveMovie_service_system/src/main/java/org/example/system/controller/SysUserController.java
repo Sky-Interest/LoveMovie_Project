@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.example.model.vo.SysUserQueryVo;
-import org.example.system.entity.SysUser;
+import org.example.model.system.SysUser;
 import org.example.system.service.SysUserService;
 import org.example.system.util.MD5Helper;
 import org.example.system.util.Result;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.example.model.vo.RouterVo;
 import org.example.model.vo.SysUserQueryVo;
-import org.example.system.entity.SysUser;
+import org.example.model.system.SysUser;
 import org.example.system.mapper.SysUserMapper;
 import org.example.system.service.SysMenuService;
 import org.example.system.service.SysUserService;

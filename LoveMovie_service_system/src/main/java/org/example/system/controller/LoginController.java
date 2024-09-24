@@ -3,7 +3,7 @@ package org.example.system.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.example.model.vo.LoginVo;
-import org.example.system.entity.SysUser;
+import org.example.model.system.SysUser;
 import org.example.system.exception.MyCustomerException;
 import org.example.system.service.SysUserService;
 import org.example.system.util.MD5Helper;
