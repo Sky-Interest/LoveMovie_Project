@@ -32,15 +32,15 @@ spring:
 # 阿里配置
 al:
   oss: #存储
-    endpoint: oss-cn-guangzhou.aliyuncs.com   # 域
-    accessKeyId:   # 秘钥
-    accessKeySecret:  # 秘钥
-    bucketName: myvideo-demo  # 桶名
-    url: https://myvideo-demo.oss-cn-guangzhou.aliyuncs.com  # 访问地址
+    endpoint: oss-cn-heyuan.aliyuncs.com   # 域
+    accessKeyId: ${ALIYUN_ACCESS_KEY_ID}  # 秘钥
+    accessKeySecret: ${ALIYUN_ACCESS_KEY_SECRET} # 秘钥
+    bucketName: oss-love-see-movie  # 桶名
+    url: https://oss-love-see-movie.oss-cn-heyuan.aliyuncs.com # 访问地址
   vod: # 视频
     regionId: cn-shanghai
-    accessKeyId:  #登录账号
-    accessKeySecret:
+    accessKeyId: ${ALIYUN_ACCESS_KEY_ID} #登录账号
+    accessKeySecret: ${ALIYUN_ACCESS_KEY_SECRET}
 #logging:
 #  level:
 #    org.springframework: DEBUG
