@@ -50,6 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and()
                 .authorizeRequests()
                 // 指定某些接口不需要通过验证即可访问。登陆接口肯定是不需要认证的
+                .antMatchers("/admin/system/upload/uploadImage").permitAll()
+                .antMatchers("/admin/system/upload/uploadVideo").permitAll()
                 .antMatchers("/admin/system/index/login").permitAll()
                 // 这里意思是其它所有接口需要认证才能访问
                 .anyRequest().authenticated()

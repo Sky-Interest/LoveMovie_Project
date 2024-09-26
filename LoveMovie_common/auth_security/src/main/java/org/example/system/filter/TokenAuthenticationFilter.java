@@ -40,7 +40,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             throws IOException, ServletException {
         logger.info("uri:"+request.getRequestURI());
         //如果是登录接口，直接放行
-        if("/admin/system/index/login".equals(request.getRequestURI())) {
+        if("/admin/system/index/login".equals(request.getRequestURI())
+                ||"/admin/system/upload/uploadImage".equals(request.getRequestURI())
+                ||"/admin/system/upload/uploadVideo".equals(request.getRequestURI())) {
             chain.doFilter(request, response);
             return;
         }
