@@ -8,6 +8,7 @@ import org.example.model.system.SysMovie;
 import org.example.model.vo.SysMovieQueryVo;
 import org.example.system.service.SysMovieService;
 import org.example.system.util.Result;
+import org.example.system.util.VodTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,8 @@ public class SysMovieController {
 
     @Autowired
     private SysMovieService sysMovieService;
+    @Autowired
+    private VodTemplate vodTemplate;
 
 
     @ApiOperation("获取全部影视列表")
@@ -79,6 +82,7 @@ public class SysMovieController {
     }
     // 修改
     //1.根据id 去得到当前影视
+
     @GetMapping("/findMovieById/{id}")
     public Result findMovieById(@PathVariable Long id)
     {
@@ -116,7 +120,7 @@ public class SysMovieController {
     }
 
     // 播放视频   根据id 和 播放秘钥
-
+    @ApiOperation("根据id获取播放凭证")
     @RequestMapping(value = "/getPlayAuth/{id}")
     public Result playVideoByAuth(@PathVariable Long id) throws Exception {
 
@@ -132,7 +136,7 @@ public class SysMovieController {
 
         // 根据playId 去阿里云服务器获取播放秘钥
 
-//        String playAuth = this.vodTemplate.getVideoPlayAuth(playId).getPlayAuth();
+        String playAuth = this.vodTemplate.getVideoPlayAuth(playId).getPlayAuth();
 
 
         // 封装map 集合
@@ -140,7 +144,7 @@ public class SysMovieController {
         // 分别封装三个参数  参数的key 要和前端对应
         map.put("image", image);
         map.put("playId",playId);
-//        map.put("playAuth",playAuth);
+        map.put("playAuth",playAuth);
         return Result.ok(map);
 
     }

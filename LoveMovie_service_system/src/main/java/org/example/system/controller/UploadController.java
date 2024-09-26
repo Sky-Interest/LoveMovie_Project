@@ -30,6 +30,8 @@ public class UploadController{
     public String uploadImage(MultipartFile uploadImage) throws IOException {
 
         String imageUrl = this.ossTemplate.upload(uploadImage.getOriginalFilename(), uploadImage.getInputStream());
+        System.out.println("imageUrl = " + imageUrl);
+
 
         return imageUrl;
     }
@@ -40,7 +42,7 @@ public class UploadController{
     @RequestMapping(value = "/uploadVideo")
     public String uploadVideo(MultipartFile uploadVideo) throws IOException {
         String videoId = this.vodTemplate.uploadVideo(uploadVideo.getOriginalFilename(), uploadVideo.getInputStream());
-
+        System.out.println("videoId = " + videoId);
 
         return  videoId;
     }
